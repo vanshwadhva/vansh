@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svashasan: EV Distribution Strategy & Action Plan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- 
+        PALETTE: Electric Future (Vibrant Tech)
+        Background: #0f172a (Slate 900)
+        Card BG: #1e293b (Slate 800)
+        Text Main: #f8fafc (Slate 50)
+        Text Muted: #94a3b8 (Slate 400)
+        Accent Cyan: #06b6d4 (Cyan 500) - Used for Tech/Growth
+        Accent Pink: #ec4899 (Pink 500) - Used for Revenue/Sales
+        Accent Purple: #8b5cf6 (Violet 500) - Used for Ecosystem
+        Accent Yellow: #eab308 (Yellow 500) - Used for Alerts/Targets
+    -->
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0f172a',
+                        card: '#1e293b',
+                        primary: '#06b6d4', 
+                        secondary: '#ec4899',
+                        tertiary: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Chart Container Styling - MANDATORY Requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; /* Adapts to grid column */
+            height: 300px; /* Base height */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive height adjustments */
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Utility for Diagram Nodes */
+        .diagram-node {
+            transition: all 0.3s ease;
+        }
+        .diagram-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    
+    <!-- 
+    PLANNING SUMMARY:
+    1.  **Narrative:** The infographic follows the Action Plan's logical progression: Market Opportunity -> Strategic Approach (B2B) -> Execution Timeline (Workstreams) -> Commercial Model -> Growth Targets.
+    2.  **Visualizations:**
+        * **Market Growth (Bar Chart):** Shows the massive TAM expansion ($16.2B to $46.2B). Goal: Change.
+        * **Distribution Channels (HTML Diagram):** Visualizes the relationship between Svashasan, OEMs, Tier 1s, and Devs. Goal: Relationships.
+        * **Workstream Timeline (Gantt-style HTML):** Displays the 3-year roadmap across 4 key areas. Goal: Change/Process.
+        * **Pricing Tiers (Bar Chart):** Compares revenue potential per vehicle (L2 vs L3 vs L4). Goal: Compare.
+        * **Growth KPIs (Line/Combo Chart):** Shows the exponential growth in vehicles and revenue. Goal: Change.
+        * **Ecosystem (Donut Chart):** Shows the composition of the developer ecosystem target. Goal: Inform/Organize.
+    3.  **Constraint Checks:** No SVG used. No Mermaid. Chart.js used with label wrapping and tooltip callbacks.
+    -->
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- HERO SECTION -->
+    <header class="relative w-full py-16 px-4 md:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-block px-4 py-1 mb-4 text-xs font-bold tracking-wider text-primary uppercase bg-cyan-900/30 rounded-full border border-cyan-500/30">
+                Strategic Roadmap
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-white">
+                SVASHASAN <span class="text-primary">OS</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light">
+                The Operating System for the Autonomous Future. A comprehensive distribution framework to capture the <span class="text-secondary font-bold">$46B</span> Automotive Software market.
+            </p>
+        </div>
+    </header>
+
+    <!-- SECTION 1: MARKET OPPORTUNITY -->
+    <section class="max-w-7xl mx-auto px-4 md:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 border-l-4 border-primary pl-4">The Massive Opportunity</h2>
+                <p class="text-slate-300 mb-6 text-lg leading-relaxed">
+                    The automotive industry is undergoing a paradigm shift towards software-defined vehicles. The market for automotive operating systems is projected to nearly triple over the next decade. Svashasan is positioned to ride this 11% CAGR wave by providing the critical infrastructure for autonomy.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-card p-6 rounded-xl border border-slate-700 text-center">
+                        <div class="text-4xl font-black text-secondary mb-1">11%</div>
+                        <div class="text-sm text-slate-400">CAGR (2024-2034)</div>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-slate-700 text-center">
+                        <div class="text-4xl font-black text-primary mb-1">3rd</div>
+                        <div class="text-sm text-slate-400">Largest Auto Market (India)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-card p-6 rounded-xl shadow-2xl border border-slate-700">
+                <h3 class="text-lg font-semibold mb-4 text-slate-200">Global Automotive OS Market Growth</h3>
+                <div class="chart-container">
+                    <canvas id="marketChart"></canvas>
+                </div>
+                <p class="mt-4 text-xs text-slate-500 text-center italic">Source: Global Insight Services Projections</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: DISTRIBUTION CHANNELS -->
+    <section class="bg-slate-800/50 py-16 border-y border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="mb-12 max-w-3xl">
+                <h2 class="text-3xl font-bold mb-4 border-l-4 border-secondary pl-4">B2B Platform Philosophy</h2>
+                <p class="text-slate-300 text-lg">
+                    Svashasan is not a consumer product; it is the "central nervous system" of the vehicle. Our distribution strategy relies on deep integration with the manufacturers and suppliers who build the cars, creating a moat that competitors cannot easily cross.
+                </p>
+            </div>
+
+            <!-- HTML/Tailwind Diagram for Channels -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Channel 1 -->
+                <div class="diagram-node bg-card p-8 rounded-2xl border-t-4 border-primary shadow-xl flex flex-col items-center text-center">
+                    <div class="text-5xl mb-6">🏭</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Direct OEM (Tier 0)</h3>
+                    <p class="text-primary font-semibold text-sm mb-4 uppercase tracking-widest">High Leverage</p>
+                    <p class="text-slate-400 text-sm flex-grow">
+                        Deep integration with manufacturers like Tata, Mahindra, and Ola. Svashasan becomes the factory-installed default OS.
+                    </p>
+                    <div class="mt-6 w-full py-2 bg-slate-700/50 rounded text-xs font-mono text-cyan-400">
+                        Target: Indian & Global OEMs
+                    </div>
+                </div>
+
+                <!-- Channel 2 -->
+                <div class="diagram-node bg-card p-8 rounded-2xl border-t-4 border-secondary shadow-xl flex flex-col items-center text-center">
+                    <div class="text-5xl mb-6">🧩</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Tier 1 Suppliers</h3>
+                    <p class="text-secondary font-semibold text-sm mb-4 uppercase tracking-widest">Broad Reach</p>
+                    <p class="text-slate-400 text-sm flex-grow">
+                        Pre-integrated into hardware stacks from Bosch, Continental, and Denso. "Powered by Svashasan" inside ADAS modules.
+                    </p>
+                    <div class="mt-6 w-full py-2 bg-slate-700/50 rounded text-xs font-mono text-pink-400">
+                        Target: Global Suppliers
+                    </div>
+                </div>
+
+                <!-- Channel 3 -->
+                <div class="diagram-node bg-card p-8 rounded-2xl border-t-4 border-tertiary shadow-xl flex flex-col items-center text-center">
+                    <div class="text-5xl mb-6">👩‍💻</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Developer Ecosystem</h3>
+                    <p class="text-tertiary font-semibold text-sm mb-4 uppercase tracking-widest">Network Effects</p>
+                    <p class="text-slate-400 text-sm flex-grow">
+                        Open APIs for 3rd party apps. Fleet management, navigation, and entertainment built on top of our OS.
+                    </p>
+                    <div class="mt-6 w-full py-2 bg-slate-700/50 rounded text-xs font-mono text-purple-400">
+                        Target: 2,000+ Developers
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 3-YEAR ACTION PLAN -->
+    <section class="max-w-7xl mx-auto px-4 md:px-8 py-16">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 border-l-4 border-tertiary pl-4">3-Year Strategic Roadmap</h2>
+            <p class="text-slate-300 text-lg max-w-4xl">
+                Execution is divided into three distinct phases, scaling from technical validation to global market leadership. Each phase unlocks new revenue streams and expands the distribution network.
+            </p>
+        </div>
+
+        <!-- Custom Timeline Visualization using Grid -->
+        <div class="space-y-8">
+            
+            <!-- Year 1 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="hidden md:block absolute left-[150px] top-0 bottom-0 w-1 bg-slate-700"></div>
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-6">
+                    <div class="md:w-[150px] flex-shrink-0">
+                        <div class="bg-primary text-slate-900 font-black px-4 py-2 rounded text-center text-xl shadow-lg shadow-cyan-500/20">YEAR 1</div>
+                        <div class="text-center text-slate-500 text-sm mt-1 font-mono">The Foundation</div>
+                    </div>
+                    
+                    <div class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-primary transition-colors">
+                            <h4 class="text-primary font-bold text-xs uppercase mb-2">Technical</h4>
+                            <p class="text-sm font-semibold">ISO 26262 & ASIL-B Certification</p>
+                        </div>
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-primary transition-colors">
+                            <h4 class="text-primary font-bold text-xs uppercase mb-2">Product</h4>
+                            <p class="text-sm font-semibold">"Svashasan-Ready" Ref Design</p>
+                        </div>
+                         <div class="bg-card p-4 rounded border border-slate-700 hover:border-primary transition-colors">
+                            <h4 class="text-primary font-bold text-xs uppercase mb-2">Sales</h4>
+                            <p class="text-sm font-semibold">2 Pilot OEM Partnerships</p>
+                        </div>
+                         <div class="bg-card p-4 rounded border border-slate-700 hover:border-primary transition-colors">
+                            <h4 class="text-primary font-bold text-xs uppercase mb-2">Ecosystem</h4>
+                            <p class="text-sm font-semibold">Dev Portal & SDK Beta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Year 2 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="hidden md:block absolute left-[150px] top-0 bottom-0 w-1 bg-slate-700"></div>
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-6">
+                    <div class="md:w-[150px] flex-shrink-0">
+                        <div class="bg-secondary text-white font-black px-4 py-2 rounded text-center text-xl shadow-lg shadow-pink-500/20">YEAR 2</div>
+                         <div class="text-center text-slate-500 text-sm mt-1 font-mono">The Launch</div>
+                    </div>
+                    
+                    <div class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                         <div class="bg-card p-4 rounded border border-slate-700 hover:border-secondary transition-colors">
+                            <h4 class="text-secondary font-bold text-xs uppercase mb-2">Technical</h4>
+                            <p class="text-sm font-semibold">Secure OTA Pipeline Live</p>
+                        </div>
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-secondary transition-colors">
+                            <h4 class="text-secondary font-bold text-xs uppercase mb-2">Features</h4>
+                            <p class="text-sm font-semibold">Level 3 Automation (Beta)</p>
+                        </div>
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-secondary transition-colors">
+                            <h4 class="text-secondary font-bold text-xs uppercase mb-2">Sales</h4>
+                            <p class="text-sm font-semibold">10k Vehicles on Road</p>
+                        </div>
+                         <div class="bg-card p-4 rounded border border-slate-700 hover:border-secondary transition-colors">
+                            <h4 class="text-secondary font-bold text-xs uppercase mb-2">Market</h4>
+                            <p class="text-sm font-semibold">Expansion to SE Asia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Year 3 -->
+            <div class="relative pl-8 md:pl-0">
+                <div class="hidden md:block absolute left-[150px] top-0 bottom-0 w-1 bg-slate-700"></div>
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-6">
+                    <div class="md:w-[150px] flex-shrink-0">
+                        <div class="bg-tertiary text-white font-black px-4 py-2 rounded text-center text-xl shadow-lg shadow-purple-500/20">YEAR 3</div>
+                         <div class="text-center text-slate-500 text-sm mt-1 font-mono">Market Lead</div>
+                    </div>
+                    
+                    <div class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-tertiary transition-colors">
+                            <h4 class="text-tertiary font-bold text-xs uppercase mb-2">Technical</h4>
+                            <p class="text-sm font-semibold">Full L4 Autonomy Stack</p>
+                        </div>
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-tertiary transition-colors">
+                            <h4 class="text-tertiary font-bold text-xs uppercase mb-2">Sales</h4>
+                            <p class="text-sm font-semibold">100k Vehicles Globally</p>
+                        </div>
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-tertiary transition-colors">
+                            <h4 class="text-tertiary font-bold text-xs uppercase mb-2">Revenue</h4>
+                            <p class="text-sm font-semibold">$25M+ ARR Achieved</p>
+                        </div>
+                        <div class="bg-card p-4 rounded border border-slate-700 hover:border-tertiary transition-colors">
+                            <h4 class="text-tertiary font-bold text-xs uppercase mb-2">Ecosystem</h4>
+                            <p class="text-sm font-semibold">2,000+ Active Devs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: REVENUE & GROWTH -->
+    <section class="bg-slate-800/30 py-16 border-y border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-primary pl-4">Revenue Mechanics & Growth Projections</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Revenue Model Chart -->
+                <div>
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-white">Per-Vehicle Licensing Tiers</h3>
+                        <p class="text-slate-400 text-sm">Revenue scales with autonomy level. High margins on advanced features.</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-slate-700 shadow-xl">
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Growth KPI Chart -->
+                <div>
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-white">Vehicle & Revenue Trajectory</h3>
+                        <p class="text-slate-400 text-sm">Exponential scaling driven by network effects and OEM fleet rollouts.</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-slate-700 shadow-xl">
+                        <div class="chart-container">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deployment Models -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-lg bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700">
+                    <h4 class="text-white font-bold mb-2 flex items-center gap-2">
+                        <span class="text-primary text-xl">1</span> Line-Fit (New)
+                    </h4>
+                    <p class="text-sm text-slate-400">Primary revenue driver. Installed during manufacturing. High volume commitments.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700">
+                    <h4 class="text-white font-bold mb-2 flex items-center gap-2">
+                        <span class="text-secondary text-xl">2</span> Retrofit (Fleets)
+                    </h4>
+                    <p class="text-sm text-slate-400">Targeting existing delivery fleets (Amazon/Flipkart) for immediate data/safety upgrades.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700">
+                    <h4 class="text-white font-bold mb-2 flex items-center gap-2">
+                        <span class="text-tertiary text-xl">3</span> Pro Services
+                    </h4>
+                    <p class="text-sm text-slate-400">$500k - $2M fees for custom integration, ensuring "White Glove" OEM support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / NEXT STEPS -->
+    <footer class="max-w-7xl mx-auto px-4 md:px-8 py-16 text-center">
+        <h2 class="text-2xl font-bold mb-8 text-white">Immediate Execution Plan (Next 30 Days)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="bg-primary/10 border border-primary/30 p-6 rounded-xl">
+                <div class="text-2xl mb-2">📄</div>
+                <h3 class="font-bold text-primary mb-2">Reference Architecture</h3>
+                <p class="text-xs text-slate-300">Draft whitepaper for Svashasan-Ready hardware design.</p>
+            </div>
+            <div class="bg-secondary/10 border border-secondary/30 p-6 rounded-xl">
+                <div class="text-2xl mb-2">🤝</div>
+                <h3 class="font-bold text-secondary mb-2">OEM Discovery</h3>
+                <p class="text-xs text-slate-300">Workshops with Tata Motors & Mahindra Electric contacts.</p>
+            </div>
+            <div class="bg-tertiary/10 border border-tertiary/30 p-6 rounded-xl">
+                <div class="text-2xl mb-2">⚖️</div>
+                <h3 class="font-bold text-tertiary mb-2">Legal Framework</h3>
+                <p class="text-xs text-slate-300">Setup B2B licensing & IP protection structures.</p>
+            </div>
+        </div>
+        <div class="mt-16 text-slate-500 text-sm">
+            &copy; 2026 Svashasan Operating System. All Strategic Data Confidential.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- UTILITY: Label Wrapping Function (>16 chars) ---
+        function formatLabel(label) {
+            const MAX_LENGTH = 16;
+            if (label.length <= MAX_LENGTH) return label;
+
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length <= MAX_LENGTH) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- CHART CONFIG: Common Options ---
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#cbd5e1', // slate-300
+                        font: { family: 'Inter', size: 12 }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    titleColor: '#f8fafc',
+                    bodyColor: '#cbd5e1',
+                    borderColor: '#334155',
+                    borderWidth: 1,
+                    padding: 12,
+                    callbacks: {
+                        // MANDATORY TOOLTIP CALLBACK
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#94a3b8' },
+                    grid: { color: '#334155', tickLength: 0 }
+                },
+                y: {
+                    ticks: { color: '#94a3b8' },
+                    grid: { color: '#334155' }
+                }
+            }
+        };
+
+        // --- CHART 1: Market Growth (Bar) ---
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        const marketLabels = ['2024 Market Size', '2034 Market Size'].map(formatLabel);
+        
+        new Chart(marketCtx, {
+            type: 'bar',
+            data: {
+                labels: marketLabels,
+                datasets: [{
+                    label: 'Market Size ($ Billions)',
+                    data: [16.2, 46.2],
+                    backgroundColor: ['#06b6d4', '#ec4899'], // Primary, Secondary
+                    borderRadius: 6,
+                    barThickness: 50
+                }]
+            },
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    legend: { display: false }
+                },
+                scales: {
+                    ...commonOptions.scales,
+                    y: { ...commonOptions.scales.y, beginAtZero: true }
+                }
+            }
+        });
+
+        // --- CHART 2: Revenue Tiers (Bar) ---
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueLabels = ['Level 2 ADAS (Basic)', 'Level 3 Automation (Advanced)', 'Level 4 Autonomy (Full Stack)'].map(formatLabel);
+
+        new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: revenueLabels,
+                datasets: [{
+                    label: 'Licensing Revenue Per Vehicle ($)',
+                    data: [75, 150, 200],
+                    backgroundColor: [
+                        'rgba(6, 182, 212, 0.7)',
+                        'rgba(236, 72, 153, 0.7)',
+                        'rgba(139, 92, 246, 0.7)'
+                    ],
+                    borderColor: [
+                        '#06b6d4',
+                        '#ec4899',
+                        '#8b5cf6'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...commonOptions,
+                indexAxis: 'y' // Horizontal Bar
+            }
+        });
+
+        // --- CHART 3: Growth KPIs (Line/Combo) ---
+        const growthCtx = document.getElementById('growthChart').getContext('2d');
+        const growthLabels = ['Year 1', 'Year 2', 'Year 3'].map(formatLabel);
+
+        new Chart(growthCtx, {
+            type: 'line',
+            data: {
+                labels: growthLabels,
+                datasets: [
+                    {
+                        label: 'Vehicles on Road',
+                        data: [100, 10000, 100000],
+                        borderColor: '#06b6d4',
+                        backgroundColor: '#06b6d4',
+                        yAxisID: 'y',
+                        tension: 0.3,
+                        borderWidth: 3,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#fff'
+                    },
+                    {
+                        label: 'Revenue ARR ($M)',
+                        data: [0, 5, 25],
+                        type: 'bar',
+                        backgroundColor: 'rgba(236, 72, 153, 0.5)',
+                        borderColor: '#ec4899',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        borderRadius: 4,
+                        barThickness: 40
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#94a3b8' },
+                        grid: { display: false }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Vehicles', color: '#06b6d4' },
+                        ticks: { color: '#06b6d4' },
+                        grid: { color: '#334155' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'Revenue ($M)', color: '#ec4899' },
+                        ticks: { color: '#ec4899' },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
