@@ -1,0 +1,279 @@
+<!--
+Palette: Professional Light (Creme Background: #fbfbf9, Header: #3c4852, Accent: #5bbfa6)
+Narrative Plan:
+1. Executive Summary: High-level proficiency scores presented as "PPC-style" metrics.
+2. Capability Pulse: Sparkline visualizations (Bar and Line) to show consistency and depth in specific domains.
+3. Detailed Analysis: A comprehensive table comparing current revenue-generating skills (Web/Frontend) against investment areas (AI/Systems Arch).
+4. Logic: All string labels > 16 characters are wrapped into arrays. Tooltips are configured to handle these arrays.
+CONFIRMATION: NEITHER Mermaid JS NOR SVG were used in this file.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Competency Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #fbfbf9; 
+        }
+        .metric-card {
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 24px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 80px; /* Specific height for sparklines */
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th { font-weight: 700; font-size: 12px; color: #3c4852; text-transform: uppercase; letter-spacing: 0.025em; border-bottom: 1px solid #edf2f7; padding: 12px 16px; }
+        td { padding: 12px 16px; border-bottom: 1px solid #f7fafc; font-size: 13px; color: #4a5568; }
+        .positive { color: #5bbfa6; }
+        .negative { color: #e53e3e; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="bg-[#3c4852] text-white p-5 rounded-t-sm shadow-md mb-6 border-l-4 border-[#5bbfa6]">
+        <h1 class="text-xl font-bold tracking-tight uppercase">Engineering Proficiency Performance</h1>
+    </header>
+
+    <main class="max-w-[1400px] mx-auto space-y-6">
+
+        <!-- Top Metrics Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Metric 1: Web Frontend -->
+            <div class="metric-card">
+                <p class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Web Frontend Level</p>
+                <h3 class="text-3xl font-medium text-slate-800 mb-4">85.00%</h3>
+                <div class="chart-container">
+                    <canvas id="chart1"></canvas>
+                </div>
+                <div class="flex justify-between mt-4 text-[10px] font-bold uppercase tracking-tighter">
+                    <div class="text-slate-400">Previous Period <br> <span class="positive">134%</span></div>
+                    <div class="text-slate-400 text-right">Previous Year <br> <span class="positive">155%</span></div>
+                </div>
+            </div>
+
+            <!-- Metric 2: Debugging Logic -->
+            <div class="metric-card">
+                <p class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Debugging Accuracy</p>
+                <h3 class="text-3xl font-medium text-slate-800 mb-4">8,240</h3>
+                <div class="chart-container">
+                    <canvas id="chart2"></canvas>
+                </div>
+                <div class="flex justify-between mt-4 text-[10px] font-bold uppercase tracking-tighter">
+                    <div class="text-slate-400">Previous Period <br> <span class="positive">114%</span></div>
+                    <div class="text-slate-400 text-right">Previous Year <br> <span class="positive">15%</span></div>
+                </div>
+            </div>
+
+            <!-- Metric 3: Backend Depth -->
+            <div class="metric-card">
+                <p class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Backend Strength</p>
+                <h3 class="text-3xl font-medium text-slate-800 mb-4">70.24%</h3>
+                <div class="chart-container">
+                    <canvas id="chart3"></canvas>
+                </div>
+                <div class="flex justify-between mt-4 text-[10px] font-bold uppercase tracking-tighter">
+                    <div class="text-slate-400">Previous Period <br> <span class="negative">-12%</span></div>
+                    <div class="text-slate-400 text-right">Previous Year <br> <span class="positive">82%</span></div>
+                </div>
+            </div>
+
+            <!-- Metric 4: OS Architecture -->
+            <div class="metric-card">
+                <p class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">OS Readiness Rate</p>
+                <h3 class="text-3xl font-medium text-slate-800 mb-4">25.12%</h3>
+                <div class="chart-container">
+                    <canvas id="chart4"></canvas>
+                </div>
+                <div class="flex justify-between mt-4 text-[10px] font-bold uppercase tracking-tighter">
+                    <div class="text-slate-400">Previous Period <br> <span class="positive">10%</span></div>
+                    <div class="text-slate-400 text-right">Previous Year <br> <span class="positive">113%</span></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Capability Table Section -->
+        <div class="bg-white rounded-sm shadow-sm overflow-hidden border border-slate-100">
+            <div class="p-6 border-b border-slate-100 bg-[#fbfbf9]/50">
+                <h2 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Capabilities with Highest Impact</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="text-left">Engineering Domain</th>
+                            <th class="text-right">Proficiency v</th>
+                            <th class="text-right">Learning Rate</th>
+                            <th class="text-right">Cost / Effort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Web Development (Frontend)</td>
+                            <td class="text-right font-bold">$8,500.00 <span class="positive text-[10px] ml-2">+2,069.53</span></td>
+                            <td class="text-right font-bold">85.00% <span class="positive text-[10px] ml-2">+15.88%</span></td>
+                            <td class="text-right font-bold">$14.40 <span class="negative text-[10px] ml-2">+8.66</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Debugging & Troubleshooting</td>
+                            <td class="text-right font-bold">$8,200.00 <span class="positive text-[10px] ml-2">+1,175.99</span></td>
+                            <td class="text-right font-bold">82.00% <span class="positive text-[10px] ml-2">+10.17%</span></td>
+                            <td class="text-right font-bold">$2.44 <span class="positive text-[10px] ml-2">-1.30</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Web Development (Backend)</td>
+                            <td class="text-right font-bold">$7,000.00 <span class="positive text-[10px] ml-2">+2,091.90</span></td>
+                            <td class="text-right font-bold">70.00% <span class="positive text-[10px] ml-2">+15.59%</span></td>
+                            <td class="text-right font-bold">$3.10 <span class="positive text-[10px] ml-2">-4.74</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">APIs and Integrations</td>
+                            <td class="text-right font-bold">$5,200.00 <span class="positive text-[10px] ml-2">+117.67</span></td>
+                            <td class="text-right font-bold">52.00% <span class="positive text-[10px] ml-2">+24.32%</span></td>
+                            <td class="text-right font-bold">$3.35 <span class="positive text-[10px] ml-2">-4.35</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Systems Architecture</td>
+                            <td class="text-right font-bold">$2,800.00 <span class="negative text-[10px] ml-2">-958.50</span></td>
+                            <td class="text-right font-bold">28.00% <span class="positive text-[10px] ml-2">+12.80%</span></td>
+                            <td class="text-right font-bold">$6.56 <span class="negative text-[10px] ml-2">+4.30</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">AI / Data Science Coding</td>
+                            <td class="text-right font-bold">$2,200.00 <span class="negative text-[10px] ml-2">-267.98</span></td>
+                            <td class="text-right font-bold">22.00% <span class="positive text-[10px] ml-2">+26.45%</span></td>
+                            <td class="text-right font-bold">$0.48 <span class="positive text-[10px] ml-2">-1.99</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Label Wrapping Logic: Strings > 16 chars become Arrays
+        const rawLabels = [
+            "Programming Fundamentals",
+            "Web Development (Frontend)",
+            "Web Development (Backend)",
+            "Databases",
+            "APIs and Integrations",
+            "Debugging and Troubleshooting",
+            "DevOps / Deployment",
+            "AI / Data Science Coding",
+            "Systems Architecture",
+            "Software Engineering Practices"
+        ];
+
+        function wrapLabels(arr) {
+            return arr.map(label => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = "";
+                words.forEach(word => {
+                    if ((currentLine + " " + word).trim().length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + " " + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            });
+        }
+
+        const processedLabels = wrapLabels(rawLabels);
+
+        // Required Tooltip Callback
+        const commonTooltip = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { x: { display: false }, y: { display: false } },
+            plugins: { legend: { display: false }, tooltip: commonTooltip }
+        };
+
+        // Chart 1: Bar Sparkline
+        new Chart(document.getElementById('chart1'), {
+            type: 'bar',
+            data: {
+                labels: Array(12).fill(''),
+                datasets: [{ data: [65, 30, 10, 15, 20, 50, 25, 18, 12, 40, 10, 18], backgroundColor: '#5bbfa6', borderRadius: 2 }]
+            },
+            options: chartOptions
+        });
+
+        // Chart 2: Line Sparkline
+        new Chart(document.getElementById('chart2'), {
+            type: 'line',
+            data: {
+                labels: Array(12).fill(''),
+                datasets: [{ 
+                    data: [80, 40, 35, 30, 45, 50, 40, 55, 45, 80, 70, 85], 
+                    borderColor: '#5bbfa6', 
+                    borderWidth: 2, 
+                    fill: true, 
+                    backgroundColor: 'rgba(91, 191, 166, 0.1)', 
+                    tension: 0.3, 
+                    pointRadius: 0 
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Chart 3: Mixed Bar Sparkline
+        new Chart(document.getElementById('chart3'), {
+            type: 'bar',
+            data: {
+                labels: Array(12).fill(''),
+                datasets: [{ data: [40, 60, 80, 55, 10, 15, 35, 10, 20, 15, 30, 80], backgroundColor: '#5bbfa6', borderRadius: 2 }]
+            },
+            options: chartOptions
+        });
+
+        // Chart 4: Line Sparkline (Fluctuating)
+        new Chart(document.getElementById('chart4'), {
+            type: 'line',
+            data: {
+                labels: Array(12).fill(''),
+                datasets: [{ 
+                    data: [85, 40, 80, 50, 45, 40, 85, 75, 70, 85, 75, 80], 
+                    borderColor: '#5bbfa6', 
+                    borderWidth: 2, 
+                    fill: true, 
+                    backgroundColor: 'rgba(91, 191, 166, 0.1)', 
+                    tension: 0.3, 
+                    pointRadius: 0 
+                }]
+            },
+            options: chartOptions
+        });
+
+    </script>
+</body>
+</html>
